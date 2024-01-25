@@ -1,0 +1,139 @@
+<div class="flex flex-wrap container mx-auto justify-center gap-3 p-5">
+    <p-galleria [value]="images" [responsiveOptions]="responsiveOptions" [showItemNavigators]="true"
+        [showThumbnailNavigators]="false" [numVisible]="5">
+        <ng-template pTemplate="item" let-item>
+            <div class="absolute left-0 bottom-12 bg-[#00B2FF] w-[10px] h-[45px]"></div>
+            <img [src]="item.itemImageSrc" style="width:975px; height: 450px; display: block;" class="rounded-xl" />
+        </ng-template>
+        <ng-template pTemplate="thumbnail" let-item class="block sm:block md:block lg:flex xl:flex">
+            <div *ngFor="let img of images; let i = index">
+                <ng-container *ngIf="img.thumbnailImageSrc === item.thumbnailImageSrc">
+                    <img [src]="img.thumbnailImageSrc" class="object-cover w-[190px]"
+                        [ngClass]="i===0 ? 'rounded-tl-xl rounded-bl-xl': ((i===4) ? 'rounded-tr-xl rounded-br-xl':'rounded-none')" />
+                </ng-container>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="caption" let-item>
+            <p class="font-semibold overflow-hidden text-ellipsis whitespace-nowrap">{{ item.alt }}</p>
+        </ng-template>
+    </p-galleria>
+
+
+
+    <div
+        class="flex flex-col p-3 right-button-bg rounded-xl space-y-4 w-[100%] sm:w-[100%] md:w-[100%] lg:w-[100%] xl:w-[25%]">
+        <a class="flex flex-col p-5 button-bg-red text-white justify-center items-center rounded-xl h-[30%]">
+            <span class="font-bold mb-2 text-xs sm:text-xs md:text-xs lg:text-xs xl:text-base">Eğitim Talep Formu</span>
+            <span class="text-center text-xs sm:text-xs md:text-xs lg:text-xs xl:text-base">Kamu kurum ve kuruluşlarına
+                kurumumuz tarafından ücretsiz eğitimler
+                verilmektedir.</span>
+        </a>
+        <a class="flex flex-col p-5 button-bg-red text-white justify-center items-center rounded-xl h-[30%]">
+            <span class="font-bold mb-2 text-xs sm:text-xs md:text-xs lg:text-xs xl:text-base">Sertifikalı Eğitim
+                Duyuruları</span>
+            <span class="text-center text-xs sm:text-xs md:text-xs lg:text-xs xl:text-base">Kurumumuzla protokol
+                imzalayan Üniversiteler tarafından düzenlenen sertifikalı ve
+                ücretli ihale
+                eğitimi verilmektedir.</span>
+        </a>
+        <div class="grid grid-cols-3 px-2 gap-2">
+
+            <div class="flex justify-center items-center p-3 bg-white rounded-md w-[100%] h-[100%]"
+                *ngFor="let logoImageSrc of logoImages;index as i;">
+                <img src={{logoImageSrc}} class="h-[50px]" />
+            </div>
+        </div>
+
+    </div>
+    <div class="hidden sm:hidden md:hidden lg:hidden xl:block container mx-auto"
+        style="padding-left:4%; padding-right:4%; ">
+        <div class="flex justify-between lacivert-bg text-white rounded-tl-xl rounded-tr-xl p-2">
+
+            <div (click)="addClass($event)" id="index1"
+                class="col-span-1  rounded-xl p-4 cursor-default flex flex-col items-center justify-center menuItem"
+                [ngClass]="active==='index1'? 'bg':''">
+                <span>Duyuruları</span>
+                <app-duyuru-svg />
+            </div>
+
+            <div (click)="addClass($event)" id="index2"
+                class="col-span-1 p-4 cursor-default flex flex-col items-center justify-center menuItem"
+                [ngClass]="active==='index2'? 'bg':''">Eğitim Takvimi
+                <app-takvim-svg />
+            </div>
+            <div (click)="addClass($event)" id="index3" [ngClass]="active==='index3'? 'bg':''"
+                class="col-span-1 p-4 cursor-default flex flex-col items-center justify-center menuItem">İhale Araçları
+                <app-hesap-svg />
+            </div>
+            <div (click)="addClass($event)" id="index4" [ngClass]="active==='index4'? 'bg':''"
+                class="col-span-1 p-4 cursor-default flex flex-col items-center justify-center menuItem">Ayın Kararı
+                <app-flag-svg />
+            </div>
+            <div (click)="addClass($event)" id="index5" [ngClass]="active==='index5'? 'bg':''"
+                class="col-span-1 p-4 cursor-default flex flex-col items-center justify-center menuItem">Ayın Makalesi
+                <app-makale-svg />
+            </div>
+            <div (click)="goToUrl(mevzuat)"
+                class="col-span-1 p-4 cursor-default flex flex-col items-center justify-center menuItem">Mevzuat
+                <app-kitap-svg />
+            </div>
+            <div (click)="addClass($event)" id="index7" [ngClass]="active==='index7'? 'bg':''"
+                class="col-span-1 rounded-tr-xl p-4 cursor-default flex flex-col items-center justify-center menuItem">
+                İstatistik
+                <app-grafik-svg />
+            </div>
+        </div>
+        <app-alt-menu-duyurular *ngIf="active==='index1'" />
+        <app-alt-menu-istatistik *ngIf="active==='index7'" />
+        <app-alt-menu-ihale-araclari *ngIf="active==='index3'" />
+        <app-alt-menu-ayin-karari *ngIf="active==='index4'" />
+        <app-alt-menu-ayin-makalesi *ngIf="active==='index5'" />
+        <app-alt-menu-egitim-takvimi *ngIf="active==='index2'" />
+    </div>
+
+    <div class="grid sm:grid md:grid lg:grid xl:hidden  container mx-auto grid-cols-2 gap-2">
+
+
+        <div class="bg-mobil flex items-center justify-center gap-2" (click)="setIndex(1)">
+            <app-takvim-svg />
+            Duyurular
+        </div>
+        <div class="bg-mobil flex items-center justify-center gap-2" (click)="setIndex(2)">
+            <app-takvim-svg />
+            Eğitim Takvimi
+        </div>
+        <div class="bg-mobil flex items-center justify-center gap-2" (click)="setIndex(3)">
+            <app-hesap-svg />
+            İhale Araçları
+        </div>
+        <div class="bg-mobil flex items-center justify-center gap-2" (click)="setIndex(4)">
+            <app-flag-svg />
+            Ayın Kararı
+        </div>
+        <div class="bg-mobil flex items-center justify-center gap-2" (click)="setIndex(5)">
+            <app-makale-svg />
+            Ayın Makalesi
+        </div>
+        <div class="bg-mobil flex items-center justify-center gap-2" (click)="goToUrl(mevzuat)">
+            <app-kitap-svg />
+            Mevzuat
+        </div>
+        <div class="bg-mobil flex items-center justify-center gap-2" (click)="setIndex(7)">
+            <app-grafik-svg />
+            İstatistik
+        </div>
+
+    </div>
+</div>
+
+<div class="card flex justify-content-center">
+    <p-dialog [(visible)]="visible" [modal]="true" [style]="{ width: '95vw' }" [draggable]="false"
+        [resizable]="false">
+        <app-alt-menu-duyurular *ngIf="index==='index1'" />
+        <app-alt-menu-istatistik *ngIf="index==='index7'" />
+        <app-alt-menu-ihale-araclari *ngIf="index==='index3'" />
+        <app-alt-menu-ayin-karari *ngIf="index==='index4'" />
+        <app-alt-menu-ayin-makalesi *ngIf="index==='index5'" />
+        <app-alt-menu-egitim-takvimi *ngIf="index==='index2'" />
+    </p-dialog>
+</div>

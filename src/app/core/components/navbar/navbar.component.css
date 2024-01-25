@@ -1,0 +1,22 @@
+/* .link {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--link-bottom-color);
+    transition: width 0.3s ease;
+}
+
+.link:hover::after {
+    width: 100%;
+} */
+
+.active {
+    border-bottom-width: 2px;
+    border-color: var(--link-bottom-color);
+}

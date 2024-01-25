@@ -1,0 +1,45 @@
+<div
+    class="hidden xs:hidden sm:hidden md:hidden lg:hidden xl:flex 2xl:flex lacivert-bg p-2 items-center justify-between flex-wrap">
+    <div class="px-20"><app-ekapakademilogo></app-ekapakademilogo></div>
+
+    <div class="flex justify-center items-center space-x-10">
+        <div *ngFor="let item of menuItemenum; index as i;">
+            <a [routerLink]="[item.routerLink]" class="no-underline text-sm text-white cursor-pointer"
+                (click)="addClass(i)" routerLinkActive="active">
+                {{item.label}}
+            </a>
+        </div>
+    </div>
+    <div class="px-20 hidden xs:hidden sm:hidden md:hidden lg:hidden xl:flex 2xl:flex">
+        <span class="p-input-icon-right">
+            <i class="pi pi-search"></i>
+            <input type="text" class="p-input text-sm rounded-2xl" pInputText [(ngModel)]="value" placeholder="Ara" />
+        </span>
+    </div>
+</div>
+
+<div class="flex xs:flex sm:flex md:flex lg:flex xl:hidden 2xl:hidden lacivert-bg items-center justify-between p-2">
+    <div class="">
+        <span class="p-input-icon-right">
+            <i class="pi pi-search"></i>
+            <input type="text" class="p-input text-sm rounded-2xl" pInputText [(ngModel)]="value" placeholder="Ara" />
+        </span>
+    </div>
+
+    <div class="flex justify-center items-center">
+        <span class="mr-2 text-white">Menü</span>
+        <button id="menu-button" (click)="onToggleEvent()">
+            <svg class="w-8 h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                    d="M1 1h15M1 7h15M1 13h15">
+                </path>
+            </svg>
+        </button>
+    </div>
+
+</div>
+<div class="card absolute right-0 z-1 menu" [ngClass]="toggleClick ? 'open': ''">
+    <p-menu [model]="menuItemenum"></p-menu>
+</div>
+
+<router-outlet></router-outlet>

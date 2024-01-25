@@ -1,0 +1,23 @@
+<div class="flex flex-col space-y-5 p-2 sm:p-2 md:p-2 lg:p-2 xl:p-0">
+    <span class="lacivert font-bold text-5xl">Tamamlanan Eğitimler</span>
+    <p-carousel [value]="cardSliderDummy" [numVisible]="4" [numScroll]="1" [circular]="false"
+        [responsiveOptions]="responsiveOptions" [showNavigators]="false" [showIndicators]="false">
+
+        <ng-template let-cardSliderDummy pTemplate="item">
+            <div class="mr-0 sm:mr-0 md:mr-0 lg:mr-0 xl:mr-5 pb-4 relative ">
+                <img src={{cardSliderDummy.cardImage}} class="h-[200px] w-full" />
+                <div class="flex justify-end items-end absolute bottom-0">
+                    <img src={{cardSliderDummy.thumbnailImage}}
+                        class="h-[70px] w-[70px] border-1 border-[var(--lacivert)]" />
+                    <div class="light-blue  text-white flex justify-center items-center">
+                        <span>>></span>
+                    </div>
+                </div>
+            </div>
+            <span class="text-blue font-bold mt-10">{{cardSliderDummy.title}}</span>
+        </ng-template>
+
+    </p-carousel>
+</div>
+
+<!-- /////İndicatorler yapılacak !! -->
