@@ -8,6 +8,6 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 
 <div>
-<img src="https://i.ibb.co/Tmxs9FT/Screenshot-2025-01-08-134045.png" alt="" border="0" width="500" height="250">
+<img style="display: block;-webkit-user-select: none;margin: auto;cursor: zoom-in;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;" src="https://i.ibb.co/Xbpt5Kr/Screenshot-2025-01-08-134125.png" width="1168" height="564">
 <img src="https://i.ibb.co/Xbpt5Kr/Screenshot-2025-01-08-134125.png" alt="" border="0" width="500" height="250">
 </div>
